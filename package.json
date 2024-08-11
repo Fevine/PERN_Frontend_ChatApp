@@ -18,6 +18,10 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
     "expo": "^44.0.0",
     "expo-status-bar": "~1.2.0",
     "native-base": "3.4.0",
