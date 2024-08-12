@@ -1,7 +1,7 @@
-import { Box } from "native-base";
+import { Box, Center } from "native-base";
 import React from "react";
+import Colors from "../../Styles/Colors";
 import LoginScreen from "./LoginScreen";
-import colors from "../../Styles/Colors";
 
 export default function AuthContainer() {
   return (
@@ -9,9 +9,17 @@ export default function AuthContainer() {
       flex={1}
       alignItems={"center"}
       justifyContent={"center"}
-      backgroundColor={colors.background.softBlue}
+      backgroundColor={Colors.background.softBlue}
+      safeArea
     >
-      <LoginScreen />
+      <Center
+        backgroundColor={Colors.background.powderBlue}
+        paddingX={10}
+        paddingY={20}
+        borderRadius={4}
+      >
+        <LoginScreen />
+      </Center>
     </Box>
   );
 }
