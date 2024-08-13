@@ -1,66 +1,50 @@
-import { MaterialIcons } from "@expo/vector-icons";
-import { Button, FormControl, Heading, Icon, Input, Stack } from "native-base";
+import { Button, FormControl, Heading, Stack } from "native-base";
 import React, { useState } from "react";
-import { Pressable } from "react-native";
+import PasswordInput from "../../../components/AuthComponents/PasswordInput";
+import UsernameInput from "../../../components/AuthComponents/UsernameInput";
 import Colors from "../../Styles/Colors";
 
 export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
+  const [values, setValues] = useState({
+    username: "",
+    password: ""
+  });
 
   return (
     <>
       <FormControl isRequired w={[48, 64, 72]}>
         <Stack space={5} alignItems={"center"}>
-          <Heading color={Colors.accent.teal}>Log In</Heading>
+          <Heading
+            paddingBottom={5}
+            _dark={{ color: Colors.accent.lavender }}
+            _light={{ color: Colors.accent.electricBlue }}
+          >
+            Log In
+          </Heading>
 
-          <Input
-            w={"100%"}
-            placeholder="username"
-            focusOutlineColor={Colors.accent.teal}
-            _hover={{ borderColor: Colors.accent.teal }}
-            borderColor={Colors.secondary.skyBlue}
-            placeholderTextColor={Colors.accent.navyBlue}
-            InputLeftElement={
-              <Icon
-                as={<MaterialIcons name="person" />}
-                size={5}
-                ml="2"
-                color={Colors.accent.navyBlue}
-              />
-            }
+          <UsernameInput
+            defaultValue={values.username}
+            values={values}
+            setValues={setValues}
           />
 
-          <Input
-            w={"100%"}
-            type={showPassword ? "text" : "password"}
-            placeholder="password"
-            focusOutlineColor={Colors.accent.teal}
-            _hover={{ borderColor: Colors.accent.teal }}
-            borderColor={Colors.secondary.skyBlue}
-            placeholderTextColor={Colors.accent.navyBlue}
-            InputRightElement={
-              <Pressable onPress={() => setShowPassword(!showPassword)}>
-                <Icon
-                  as={
-                    <MaterialIcons
-                      name={showPassword ? "visibility" : "visibility-off"}
-                    />
-                  }
-                  size={5}
-                  mr="2"
-                  color={Colors.accent.navyBlue}
-                />
-              </Pressable>
-            }
+          <PasswordInput
+            values={values}
+            setValues={setValues}
+            defaultValue={values.password}
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
           />
 
           <Button
             w={"100%"}
             _text={{
               _dark: { color: Colors.accent.teal },
-              _light: { color: Colors.accent.lavender}
+              _light: { color: Colors.accent.lavender }
             }}
             bgColor={Colors.accent.teal}
+            onPress={() => console.log(values)}
           >
             Log In
           </Button>
