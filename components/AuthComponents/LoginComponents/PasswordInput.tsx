@@ -1,9 +1,12 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { Icon, Input } from "native-base";
 import React from "react";
-import Colors from "../../src/Styles/Colors";
+import { Pressable } from "react-native";
+import Colors from "../../../src/Styles/Colors";
 
 type Props = {
+  showPassword: boolean;
+  setShowPassword: React.Dispatch<React.SetStateAction<boolean>>;
   isInvalid?: boolean;
   defaultValue: string;
   setValues: React.Dispatch<
@@ -18,23 +21,38 @@ type Props = {
   };
 };
 
-export default function UsernameInput(props: Props) {
+const PasswordInput = (props: Props) => {
   return (
     <Input
       onChangeText={(text) =>
-        props.setValues({ ...props.values, username: text })
+        props.setValues({ ...props.values, password: text })
       }
       defaultValue={props.defaultValue}
       isInvalid={props.isInvalid}
       w={"100%"}
-      placeholder="username"
+      type={props.showPassword ? "text" : "password"}
+      placeholder="password"
       focusOutlineColor={Colors.accent.teal}
       _hover={{ borderColor: Colors.accent.teal }}
       borderColor={Colors.secondary.skyBlue}
       placeholderTextColor={Colors.accent.navyBlue}
+      InputRightElement={
+        <Pressable onPress={() => props.setShowPassword(!props.showPassword)}>
+          <Icon
+            as={
+              <MaterialIcons
+                name={props.showPassword ? "visibility" : "visibility-off"}
+              />
+            }
+            size={5}
+            mr="2"
+            color={Colors.accent.navyBlue}
+          />
+        </Pressable>
+      }
       InputLeftElement={
         <Icon
-          as={<MaterialIcons name="person" />}
+          as={<MaterialIcons name="vpn-key" />}
           size={5}
           ml="2"
           color={Colors.accent.navyBlue}
@@ -42,4 +60,6 @@ export default function UsernameInput(props: Props) {
       }
     />
   );
-}
+};
+
+export default PasswordInput;

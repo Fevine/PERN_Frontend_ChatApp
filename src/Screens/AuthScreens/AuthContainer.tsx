@@ -2,6 +2,7 @@ import { Box, Center } from "native-base";
 import React from "react";
 import Colors from "../../Styles/Colors";
 import LoginScreen from "./LoginScreen";
+import RegisterScreen from "./RegisterScreen";
 
 export default function AuthContainer() {
   return (
@@ -18,7 +19,7 @@ export default function AuthContainer() {
         paddingY={20}
         borderRadius={4}
       >
-        <LoginScreen />
+        <RegisterScreen />
       </Center>
     </Box>
   );

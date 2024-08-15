@@ -1,14 +1,19 @@
 import { Button, FormControl, Heading, Stack } from "native-base";
 import React, { useState } from "react";
-import PasswordInput from "../../../components/AuthComponents/LoginComponents/PasswordInput";
-import UsernameInput from "../../../components/AuthComponents/LoginComponents/UsernameInput";
 import Colors from "../../Styles/Colors";
+import UsernameInput from "../../../components/AuthComponents/RegisterComponents/UsernameInput";
+import PasswordInput from "../../../components/AuthComponents/RegisterComponents/PasswordInput";
+import EmailInput from "../../../components/AuthComponents/RegisterComponents/EmailInput";
+import ConfirmPasswordInput from "../../../components/AuthComponents/RegisterComponents/ConfirmPasswordInput";
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState({
     username: "",
-    password: ""
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phoneNumber: ""
   });
 
   return (
@@ -20,11 +25,19 @@ export default function LoginScreen() {
             _dark={{ color: Colors.accent.lavender }}
             _light={{ color: Colors.accent.electricBlue }}
           >
-            Log In
+            Create Account
           </Heading>
+
+          {/* Inputs Here! */}
 
           <UsernameInput
             defaultValue={values.username}
+            values={values}
+            setValues={setValues}
+          />
+
+          <EmailInput
+            defaultValue={values.email}
             values={values}
             setValues={setValues}
           />
@@ -35,7 +48,19 @@ export default function LoginScreen() {
             defaultValue={values.password}
             showPassword={showPassword}
             setShowPassword={setShowPassword}
+            placeHolder="Password"
           />
+
+          <ConfirmPasswordInput
+            values={values}
+            setValues={setValues}
+            defaultValue={values.confirmPassword}
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
+            placeHolder="Confirm Password"
+          />
+
+          {/* Inputs Here! */}
 
           <Button
             w={"100%"}
@@ -46,7 +71,7 @@ export default function LoginScreen() {
             bgColor={Colors.accent.teal}
             onPress={() => console.log(values)}
           >
-            Log In
+            Register
           </Button>
         </Stack>
       </FormControl>
