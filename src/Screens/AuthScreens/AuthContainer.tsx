@@ -1,10 +1,12 @@
 import { Box, Center } from "native-base";
-import React from "react";
+import React, { useState } from "react";
 import Colors from "../../Styles/Colors";
 import LoginScreen from "./LoginScreen";
 import RegisterScreen from "./RegisterScreen";
 
 export default function AuthContainer() {
+  const [inLogin, setInLogin] = useState(true);
+
   return (
     <Box
       flex={1}
@@ -19,7 +21,11 @@ export default function AuthContainer() {
         paddingY={20}
         borderRadius={4}
       >
-        <RegisterScreen />
+        {inLogin ? (
+          <LoginScreen setInLogin={setInLogin} />
+        ) : (
+          <RegisterScreen setInLogin={setInLogin} />
+        )}
       </Center>
     </Box>
   );

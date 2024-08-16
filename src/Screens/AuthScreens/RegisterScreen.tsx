@@ -5,8 +5,13 @@ import UsernameInput from "../../../components/AuthComponents/RegisterComponents
 import PasswordInput from "../../../components/AuthComponents/RegisterComponents/PasswordInput";
 import EmailInput from "../../../components/AuthComponents/RegisterComponents/EmailInput";
 import ConfirmPasswordInput from "../../../components/AuthComponents/RegisterComponents/ConfirmPasswordInput";
+import { Pressable, Text } from "react-native";
 
-export default function RegisterScreen() {
+type Props = {
+  setInLogin: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function RegisterScreen({ setInLogin }: Props) {
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState({
     username: "",
@@ -73,6 +78,9 @@ export default function RegisterScreen() {
           >
             Register
           </Button>
+          <Pressable onPress={() => setInLogin(true)}>
+            <Text>Already have an account?</Text>
+          </Pressable>
         </Stack>
       </FormControl>
     </>

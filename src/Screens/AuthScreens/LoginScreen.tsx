@@ -1,10 +1,15 @@
-import { Button, FormControl, Heading, Stack } from "native-base";
+import { Button, FormControl, Heading, Link, Stack } from "native-base";
 import React, { useState } from "react";
 import PasswordInput from "../../../components/AuthComponents/LoginComponents/PasswordInput";
 import UsernameInput from "../../../components/AuthComponents/LoginComponents/UsernameInput";
 import Colors from "../../Styles/Colors";
+import { Pressable, Text } from "react-native";
 
-export default function LoginScreen() {
+type Props = {
+  setInLogin: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function LoginScreen({ setInLogin }: Props) {
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState({
     username: "",
@@ -48,6 +53,9 @@ export default function LoginScreen() {
           >
             Log In
           </Button>
+          <Pressable onPress={() => setInLogin(false)}>
+            <Text>Don't have an account yet?</Text>
+          </Pressable>
         </Stack>
       </FormControl>
     </>
